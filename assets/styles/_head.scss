@@ -1,0 +1,47 @@
+// @import 'config';
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+
+*, *:after, *::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+	margin: 0;padding: 0;
+	outline: none;
+	line-height: 1.5rem !important;
+}
+a{text-decoration: none;color: inherit;font-size: inherit;font-family: inherit;}
+p, span, h1, h2, h3, h4, h5, h6{
+	line-height: 1;
+}
+a, button{
+	text-decoration: none;
+	outline: none;
+	color: inherit;
+}
+html, body {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+
+	color: $gray-100;
+
+	background-color: $gray-800;
+	
+	&.break {
+		overflow: hidden;
+	}
+}
+
+.container{
+	max-width: $container-width;
+	width: calc(100% - 20px);
+	margin: 0 auto;
+	padding: 0px;
+}
+img {
+	@include user-drag(none);
+}
+.anchor {
+	cursor: pointer;
+}

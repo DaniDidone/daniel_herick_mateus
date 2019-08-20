@@ -1,0 +1,14 @@
+Grupo: Daniel, Mateus e Hérick
+
+Instale Yarn no dispositivo
+
+Acesse a pasta raiz do projeto (aqui)
+
+rode os seguintes comandos:
+@ yarn
+
+@ yarn dev
+
+em uma outra prompt
+
+@ yarn server

@@ -1,0 +1,133 @@
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	   -moz-border-radius: $radius;
+		-ms-border-radius: $radius;
+			border-radius: $radius;
+}
+
+@mixin transition($transition){
+	-webkit-transition: $transition;
+	   -moz-transition: $transition;
+	    -ms-transition: $transition;
+		 -o-transition: $transition;
+		    transition: $transition;
+}
+
+@mixin transform($transform){
+	-webkit-transform: $transform;
+	   -moz-transform: $transform;
+		-ms-transform: $transform;
+		 -o-transform: $transform;
+			transform: $transform;
+}
+
+@mixin columns($column,$gap){
+	-webkit-column-count: $column;
+	   -moz-column-count: $column;
+	    -ms-column-count: $column;
+		 -o-column-count: $column;
+			column-count: $column;
+	-webkit-column-gap: $gap;
+	   -moz-column-gap: $gap;
+	    -ms-column-gap: $gap;
+		 -o-column-gap: $gap;
+			column-gap: $gap;
+}
+
+@mixin truncate($truncation-boundary) {
+    max-width: $truncation-boundary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+// necessario por a variavel nome e passar os paremetro dentro
+@mixin keyframes($animation-name) {
+	@-webkit-keyframes #{$animation-name} {
+		@content;
+	}
+	@-moz-keyframes #{$animation-name} {
+		@content;
+	}
+	@-ms-keyframes #{$animation-name} {
+		@content;
+	}
+	@-o-keyframes #{$animation-name} {
+		@content;
+	}
+	@keyframes #{$animation-name} {
+		@content;
+	}
+}
+
+// necessario chamar e passar os paremetro dentro
+@mixin input-placeholder {
+    &::-webkit-input-placeholder { @content; }
+    &:-ms-input-placeholder 	 { @content; }
+    &::-moz-placeholder 		 { @content; }
+    &:-moz-placeholder 			 { @content; }
+    &.placeholder 				 { @content; }
+}
+
+
+@mixin user-drag($user-drag){
+	-webkit-touch-callout: $user-drag;
+		-webkit-user-drag: $user-drag;
+		 -khtml-user-drag: $user-drag;
+		   -moz-user-drag: $user-drag;
+			-ms-user-drag: $user-drag;
+				user-drag: $user-drag;
+}
+
+@mixin user-select($user-select){
+	-webkit-user-select: $user-select;  
+		-moz-user-select: $user-select;     
+		 -ms-user-select: $user-select;      
+		  -o-user-select: $user-select;      
+			 user-select: $user-select;            
+}
+
+@mixin box-shadow($box-shadow){
+	-webkit-box-shadow: $box-shadow;
+	   -moz-box-shadow: $box-shadow;
+	     -ms-transform: $box-shadow;
+		  -o-transform: $box-shadow;
+			box-shadow: $box-shadow;
+}
+
+@mixin filter($filter){
+	-webkit-filter: $filter;
+	   -moz-filter: $filter;
+		-ms-filter: $filter;
+		 -o-filter: $filter;
+			filter: $filter;
+}
+
+@mixin font-face($family, $src, $weight:400, $font-style:'normal' , $format:'truetype'){
+	@font-face {
+		font-family: $family;
+		src: url($src) format($format);
+		font-weight: $weight;
+		font-style: $font-style;
+	}
+}
+
+@mixin animate($name, $duration, $iteration, $direction) {
+  -webkit-animation-duration: $duration;
+     -moz-animation-duration: $duration;
+       -o-animation-duration: $duration;
+          animation-duration: $duration;
+  -webkit-animation-iteration-count: $iteration;
+     -moz-animation-iteration-count: $iteration;
+       -o-animation-iteration-count: $iteration;
+          animation-iteration-count: $iteration;
+  -webkit-animation-name: $name;
+     -moz-animation-name: $name;
+       -o-animation-name: $name;
+          animation-name: $name;
+  -webkit-animation-direction: $direction;
+     -moz-animation-direction: $direction;
+       -o-animation-direction: $direction;
+          animation-direction: $direction;
+}
