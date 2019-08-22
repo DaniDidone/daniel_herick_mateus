@@ -26,7 +26,7 @@ class Login extends Component {
         if(data.length){
             if(!data[0].inactive){
                 console.log(data[0])
-                localStorage.setItem('@dhm/token', "token-"+data[0].id)
+                localStorage.setItem('@dhm/token', data[0].id)
                 window.location.reload();
             }else{
                 console.log('User not found');
@@ -57,7 +57,7 @@ class Login extends Component {
                 <img className="appLogin-brand" src="/static/logo.png" alt="DataWare" />
                 <form className="appLogin-form" onSubmit={this.handleSubmit}>
                     <FormGroup controlId="user">
-                        <FormLabel>Usuário</FormLabel>
+                        <FormLabel>Nome</FormLabel>
                         <FormControl
                             autoFocus
                             type="user"

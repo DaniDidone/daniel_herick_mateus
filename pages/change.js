@@ -4,23 +4,23 @@ import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
 import Layout from '../components/layout'
 import api from '../api'
 
-class Register extends Component {
+class Change extends Component {
     constructor(props) {
         super(props)
     
         this.state = {
             user: "",
-            password: ""
+            password: "",
+            new: ""
         }
 
         this.validateData = this.validateData.bind(this);
     }
 
     validateData = () => {
-        api.post('/users', {
-            name: this.state.user,
-            pass: this.state.password,
-            inactive: 0
+        
+        api.patch('/users/'+localStorage.getItem('@dhm/token'), {
+            pass: this.state.new
         })
         .then(function (response) {
             console.log(response)
@@ -31,7 +31,7 @@ class Register extends Component {
     }
 
     validateForm = () => {
-        return this.state.user.length > 0 && this.state.password.length > 0
+        return this.state.user.length > 0 && this.state.password.length > 0 && this.state.new.length > 0
     }
     
     handleChange = event => {
@@ -48,7 +48,7 @@ class Register extends Component {
     render() {
         return (
             <Layout>
-                <h2 className="text-center">Registrar</h2>
+                <h2 className="text-center">Alterar senha</h2>
                 <div className="appLogin auto-height">
                     <form className="appLogin-form" onSubmit={this.handleSubmit}>
                         <FormGroup controlId="user">
@@ -61,9 +61,17 @@ class Register extends Component {
                             />
                         </FormGroup>
                         <FormGroup controlId="password">
-                            <FormLabel>Senha</FormLabel>
+                            <FormLabel>Senha atual</FormLabel>
                             <FormControl
                                 value={this.state.password}
+                                onChange={this.handleChange}
+                                type="password"
+                            />
+                        </FormGroup>
+                        <FormGroup controlId="new">
+                            <FormLabel>Nova senha</FormLabel>
+                            <FormControl
+                                value={this.state.new}
                                 onChange={this.handleChange}
                                 type="password"
                             />
@@ -73,7 +81,7 @@ class Register extends Component {
                             disabled={!this.validateForm()}
                             type="submit"
                             >
-                            Registrar
+                            Alterar
                         </Button>
                     </form>
                 </div>
@@ -82,4 +90,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default Change;

@@ -1,16 +1,22 @@
 {
   "users": [
     {
-      "name": "Daniel",
-      "pass": "123",
+      "name": "User Default",
+      "pass": "d4as9484g489r48a!sad489",
       "id": 0,
-      "inactive": 0
+      "inactive": 1
     },
     {
-      "name": "lucas",
-      "pass": "1234",
+      "name": "Daniel",
+      "pass": "123",
       "inactive": 0,
       "id": 1
+    },
+    {
+      "name": "Lucas",
+      "pass": "1234",
+      "inactive": 0,
+      "id": 2
     }
   ]
 }

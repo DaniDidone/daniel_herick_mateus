@@ -19,10 +19,11 @@ class AppHeader extends Component {
                     <Navbar.Brand className="p-0"><Link href='/'><a className="appHeader-brand-link" key="appHeader-brand-link"><img width="190" className="appHeader-brand-img" key="appHeader-brand-img" src="/static/logo.png" alt="DataWare" /></a></Link></Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
+                            <Nav className="mr-auto">
+                                <Link href='/manage'><a className="nav-link">Gerenciar usuarios</a></Link>
+                                <Link href='/register'><a className="nav-link">Cadastrar usuarios</a></Link>
+                            </Nav>
                             <Nav className="ml-auto">
-                                <Link href='/register'><a className="nav-link">Cadastrar</a></Link>
-                                <Link href='/list'><a className="nav-link">Listar</a></Link>
-                                <Link href='/remove'><a className="nav-link">Remover usuario</a></Link>
                                 <Link href='/change'><a className="nav-link">Alterar senha</a></Link>
                                 <Link href=''><a onClick={this.logout} className="nav-link">Sair</a></Link>
                             </Nav>
