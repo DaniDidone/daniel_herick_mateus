@@ -10,34 +10,93 @@ class Register extends Component {
     
         this.state = {
             user: "",
-            password: ""
+            password: "",
+            id: "",
+            validID: false,
+            validNAME: false
         }
 
         this.validateData = this.validateData.bind(this);
+        this.validateID = this.validateID.bind(this);
+        this.validateName = this.validateName.bind(this);
+    }
+
+    componentDidUpdate(){
+        if(this.state.validID && this.state.validNAME) this.writeData();
     }
 
     validateData = () => {
+        this.setState({
+            validID: false,
+            validNAME: false
+        });
+
+        this.validateID()
+        this.validateName()
+    }
+
+    validateID = () => {
+        var objeto = this
+
+        api.get('/users/?id='+this.state.id)
+        .then(function (response) {
+            if(!response.data.length){
+                objeto.setState({
+                    validID: true
+                })
+            }else{
+                objeto.setState({
+                    validID: false
+                })
+                console.log('ID já existente')
+            }
+        })
+    }
+
+    validateName = () => {
+        var objeto = this
+
+        api.get('/users/?name='+this.state.user)
+        .then(function (response) {
+            if(!response.data.length){
+                objeto.setState({
+                    validNAME: true
+                })
+            }else{
+                objeto.setState({
+                    validNAME: false
+                })
+                console.log('Nome já existente')
+            }
+        })
+    }
+
+    writeData = () => {
         api.post('/users', {
             name: this.state.user,
             pass: this.state.password,
-            inactive: 0
+            inactive: 0,
+            id: this.state.id
         })
         .then(function (response) {
             console.log(response)
         })
-        .catch(function (error) {
-            console.log(error)
-        })
     }
 
     validateForm = () => {
-        return this.state.user.length > 0 && this.state.password.length > 0
+        return this.state.user.length > 0 && this.state.password.length > 0 && (parseInt(this.state.id) > 0  || this.state.id.length == 0 )
     }
     
     handleChange = event => {
-        this.setState({
-            [event.target.id]: event.target.value
-        });
+        if(event.target.id == 'id'){
+            this.setState({
+                id: parseInt(event.target.value)
+            });
+        }else{
+            this.setState({
+                [event.target.id]: event.target.value
+            });
+        }
     }
     
     handleSubmit = event => {
@@ -48,7 +107,7 @@ class Register extends Component {
     render() {
         return (
             <Layout>
-                <h2 className="text-center">Registrar</h2>
+                <h2 className="text-center">Cadastrar novo usuário</h2>
                 <div className="appLogin auto-height">
                     <form className="appLogin-form" onSubmit={this.handleSubmit}>
                         <FormGroup controlId="user">
@@ -66,6 +125,14 @@ class Register extends Component {
                                 value={this.state.password}
                                 onChange={this.handleChange}
                                 type="password"
+                            />
+                        </FormGroup>
+                        <FormGroup controlId="id">
+                            <FormLabel>ID</FormLabel>
+                            <FormControl
+                                value={this.state.id}
+                                onChange={this.handleChange}
+                                type="number"
                             />
                         </FormGroup>
                         <Button

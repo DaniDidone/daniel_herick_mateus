@@ -7,16 +7,28 @@
       "inactive": 1
     },
     {
-      "name": "Daniel",
-      "pass": "123",
-      "inactive": 0,
-      "id": 1
+      "name": "daniel",
+      "pass": "123456",
+      "id": 1,
+      "inactive": 0
     },
     {
-      "name": "Lucas",
-      "pass": "1234",
-      "inactive": 0,
+      "name": "lucas",
+      "pass": "123",
+      "inactive": 1,
       "id": 2
+    },
+    {
+      "name": "mlucas",
+      "pass": "123",
+      "inactive": 0,
+      "id": 12
+    },
+    {
+      "name": "daniels",
+      "pass": "1231231",
+      "inactive": 0,
+      "id": 54
     }
   ]
 }
