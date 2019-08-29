@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
 
-import Link from 'next/link'
-
-import Layout from '../components/layout'
+import Layout from '../../components/layout'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
 import Badge from 'react-bootstrap/Badge'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 
-import api from '../api'
+import api from '../../api'
 
-class Manage extends Component {
+class ManageDelete extends Component {
     constructor(props) {
         super(props)
     
@@ -25,7 +23,7 @@ class Manage extends Component {
     }
     
     componentDidMount(){
-        api.get('/users/?inactive=0')
+        api.get('/users/?inactive=1')
         .then(response => {
             this.createList(response.data)
         })
@@ -42,7 +40,7 @@ class Manage extends Component {
         console.log(id)
         
         api.patch('/users/'+id, {
-            inactive: 1
+            inactive: 0
         })
         .then(function (response) {
             console.log(response)
@@ -51,7 +49,7 @@ class Manage extends Component {
             console.log(error)
         })
 
-        api.get('/users/?inactive=0')
+        api.get('/users/?inactive=1')
         .then(response => {
             this.createList(response.data)
         })
@@ -70,7 +68,7 @@ class Manage extends Component {
 
         return(
             <Layout>
-                <h2 className="mb-5 text-center">Gerenciamento de usuários</h2>
+                <h2 className="mb-5 text-center">Gerenciamento de usuários deletados</h2>
     
                 <ListGroup id="list" className="mt-2 text-dark">
                     {this.state.users.map((item, index) => (
@@ -87,13 +85,11 @@ class Manage extends Component {
                                 name="name"
                                 type="text"/>
                             </InputGroup>
-                            <Button className="ml-2" onClick={() => this.excludeUser(item.id)} variant="danger">Excluir</Button>
+                            <Button className="ml-2" onClick={() => this.excludeUser(item.id)} variant="info">Restaurar</Button>
                         </ListGroup.Item>
                     ))}
                     
                 </ListGroup>
-
-                <Link href='/manage/deleted'><a className="nav-link">Gerenciar usuarios deletados</a></Link>
                 
             </Layout>
         )
@@ -101,4 +97,4 @@ class Manage extends Component {
     
 }
 
-export default Manage;
+export default ManageDelete;
